@@ -1,0 +1,12 @@
+{
+  "name": "open-banking-demo",
+  "version": "0.0.1",
+  "description": "",
+  "author": "Roman Oleksiuk",
+  "scripts": {
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "husky": "^9.1.6"
+  }
+}
