@@ -6,17 +6,21 @@
   "private": true,
   "keywords": [],
   "license": "ISC",
-  "files": [ "dist", "src" ],
+  "files": [
+    "dist",
+    "src"
+  ],
   "main": "./dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc",
+    "build": "rimraf dist & tsc",
     "link": "npm link"
   },
   "dependencies": {
     "axios": "^1.7.7"
   },
   "devDependencies": {
+    "rimraf": "^6.0.1",
     "typescript": "^5.6.3"
   }
 }

@@ -3,6 +3,9 @@ import { ClientOptions } from '../types/client-options.type';
 import { BASE_URL } from '../constants';
 import { Account } from '../types/account.type';
 import { RefreshAccessTokenResponse } from '../types/refresh-access-token-reposne';
+import { CreatePaymentLinkParams } from '../types/create-payment-link-params.type';
+import { CreatePaymentLinkResponse } from '../types/create-payment-link-response.type';
+import { GetPaymentLinkStatusResponse } from '../types/get-payment-link-status-response.type';
 
 export class OpenBankingEUv2Client {
 
@@ -27,13 +30,31 @@ export class OpenBankingEUv2Client {
 
   public async listAccounts(): Promise<Account[]> {
     const response = await this.axiosInstance.get<Account[]>(
-      '/v1/accounts',
-      {
-
-      }
+      '/v1/accounts'
     );
 
     return response.data;
+  }
+
+  public async getAccount(accountId: string): Promise<Account> {
+    const response = await this.axiosInstance.get<Account>(
+      `/v1/accounts/${accountId}`
+    );
+
+    return response.data;
+  }
+
+  public async createPaymentLink(params: CreatePaymentLinkParams): Promise<CreatePaymentLinkResponse> {
+    const response = await this.axiosInstance.post<CreatePaymentLinkResponse>(
+      `/v2/payments/accept/links`,
+      params
+    );
+
+    return response.data;
+  }
+
+  public async getPaymentLinkStatus(paymentLinkId: string): Promise<GetPaymentLinkStatusResponse> {
+
   }
 
   private setTokens(options: { accessToken: string; refreshToken: string }): void {
