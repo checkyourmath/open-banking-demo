@@ -1,17 +1,17 @@
-import products_data from '@data/products-data';
 import useGlobalContext from '@shared/hooks/use-context';
 import useCart from '@shared/hooks/useCart';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import { ProductsType } from '@shared/interFace/interFace';
 
-const ShopGridTabTwoProducts = () => {
+const ShopGridTabTwoProducts = ({ products }: { products: ProductsType[] }) => {
     const { setModalData } = useGlobalContext()
     const { UseAddToCart, UseAddToWishlist } = useCart();
     return (
         <>
             {
-                products_data.slice(81, 87).map((item) => (
+                products.map((item) => (
                     <div className="row" key={item.id}>
                         <div className="col-xl-4 col-lg-4">
                             <div className="product mb-30">

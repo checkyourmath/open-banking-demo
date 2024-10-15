@@ -1,11 +1,11 @@
 "use client"
 import React from 'react';
 import ShopModal from '../common/modal/ShopModal';
-import PaginationData from '../../components/common/pagination/pagination-data'
 import NiceSelect from '../common/NiceSelect';
 import productSelectOptionData from '@data/product-select-option-data';
 import ShopGridTabTwoProducts from './ShopGridTabTwoProducts';
 import ShopGridTabOneProducts from './ShopGridTabOneProducts';
+import products_data from '@data/products-data';
 
 const ShopProductArea = () => {
     const selectHandler = () => { }
@@ -38,7 +38,7 @@ const ShopProductArea = () => {
                         </div>
                         <div className="col-xl-4 col-lg-5 col-md-5">
                             <div className="pro-tab1-content pt-15 mb-20 text-md-center">
-                                <h4>Showing 20 Results Of 50 Products</h4>
+                                <h4>Showing 50 Products</h4>
                             </div>
                         </div>
                         <div className="col-xl-4 col-lg-4 col-md-4">
@@ -56,33 +56,21 @@ const ShopProductArea = () => {
                         </div>
                     </div>
 
-                    <div className="row mb-40">
-                        <div className="col-xl-12">
-                            <div className="basic-pagination mt-20 basic-pagination-2 text-center">
-                                <PaginationData/>
-                            </div>
-                        </div>
-                    </div>
-
                     <div className="product-tab-content">
                         <div className="tab-content" id="pills-tabContent">
                             <div className="tab-pane fade show active" id="pills-home" role="tabpanel"
                               aria-labelledby="pills-home-tab">
                                 <div className="row">
-                                    <ShopGridTabOneProducts/>
+                                    <ShopGridTabOneProducts
+                                      products={products_data.slice(72, 81)}
+                                    />
                                 </div>
                             </div>
                             <div className="tab-pane fade" id="pills-profile" role="tabpanel"
                               aria-labelledby="pills-profile-tab">
-                                <ShopGridTabTwoProducts/>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="row">
-                        <div className="col-xl-12">
-                            <div className="basic-pagination mt-20 basic-pagination-2 text-center">
-                                <PaginationData/>
+                                <ShopGridTabTwoProducts
+                                  products={products_data.slice(81, 87)}
+                                />
                             </div>
                         </div>
                     </div>

@@ -145,15 +145,15 @@ img.secondary-img {
 }
 
 
-.product-wrapper:hover img.secondary-img {
-  opacity: 1;
-  z-index: 1;
-}
-
-.product-wrapper:hover img.primary-img {
-  opacity: 0;
-  z-index: 1;
-}
+//.product-wrapper:hover img.secondary-img {
+//  opacity: 1;
+//  z-index: 1;
+//}
+//
+//.product-wrapper:hover img.primary-img {
+//  opacity: 0;
+//  z-index: 1;
+//}
 
 .product-action {
   position: absolute;

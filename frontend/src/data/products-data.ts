@@ -751,11 +751,16 @@ const products_data: ProductsType[] = [
   //filter-tab-1
   {
     id: 73,
-    image: productImg1,
+    //image: productImg1,
+    image: {
+      src: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsBAMAAACLU5NGAAAAG1BMVEW8vLwAAACNjY1eXl4vLy8XFxdGRkZ1dXWkpKQqwKuFAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAD0ElEQVR4nO3Yv28TMRTA8ZCfN+KUpB0bVVUZSSXE2gix9/ghMTYDYuUk6JxUFPiz8dnvOXcJUL/rwPL9LInv8uzzj3Ns93oAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYHP2xn34vEnJ4rZ07y93t39+crPXp+Hr0Lnj9DPnZhtjvMU3V5trvsU6pN/q7R8hOQv59v0XvZ4e0RBv8N1F2gznkr6JyX4Zk/OQWqbrvcq5K3N8tkLCnHsRs9Gk5LNwzWJGzk0lzl/amOOz+b6YvXp+sdLyfMGzy7uvPp8vIe1LfRduH0uh0otj547s8dmkW3xbx/LWsdq+K04apdddsWncDq1w3SE+UyGV7m1j9TStn1t5DP28l+LqVjjtEJ9pIJWuv9w001Ws/VIaYSLX/ecz+fm8S3ymoY6BfoxL6VFsjZWOiVLGzir+YCvFmOPzPEl97tzTZnocW137zI+Z1FnX8elOO8VnP1ZPq1NnsIh9FFr9JrTBVUxX8sbH3pvoBGCOt4rZLjW6CK0ySPPNVmeG0E5p5NvjjWJBu7YOnTJOL1BqljAzrHUI2eNt+jpmdNoLtU8juB7Cm/DFN8BR32lf2eNtpF6r9MJotqf72foZ6w99mB9vUsVlStnIdppe817zm+/F8nByzI+3GMif1i7bVTvbXb3HYaHSPT5fcab1z8g2rBmm3eNzVY31Uk621d4yxRpveSxZXeZkO9zrQ2u85bFmujx6OFt/sVWENd7yWLLazsm2XqxfPSI+U/Hrrh6y08xsw7L4qHu8xaTcn3f+mu0oNM6mc7zJfXy7MrL1y+RVuxdt8Sb9+H/y8Cxdb1uHhzuG7HijVRgvD/+n+UvT3Y7aHm8UV0rr9gpgfLgCCFudxjbWGm9UhbXKsr1eGhysl2JDDff/frLjreJyN61t4/ppklplITN7HFb9wz/rzPg8VVrPxW8pOq3Fr/X2XD7DS6i9aI7Ps6tEHBvNnUs9Kho7lzBoCtke62GENT7TNo3EuNwd6mCQ/Fc6Vtqb99SL1vhMI82miHFp9yvbYdkcp92yHj3oWYM1PtNAX6mhTNxlHAOFTJgjGUNyxKBHD+HCSYf4XKUcaeg2WcbyudROzhr0QGaQzq30MMIWn21Rn0f9uljroiCeT93unU+tpfL+1x8lUA4jbPHZJnpaJxNMOt2ToXrfOuwrd32xTYPJEJ/vvJ1Nykey0WLC7UFj26r9aYk3KF66xlr83yfF2+ZrrqPKEG9y+8hz9cfGAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPi/fgPEZA3HvL7u2wAAAABJRU5ErkJggg==',
+      width: 300,
+      height: 300,
+    },
     imageTwo: productImg2,
     title: "Medical Microscope",
     subTitle: "accessories",
-    price: 250.99,
+    price: 252.99,
     quantity: 0,
   },
   {
