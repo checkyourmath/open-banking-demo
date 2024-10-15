@@ -1,8 +1,10 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { ConfigHelper } from '@src/shared/helpers/config.heper';
+import { SequelizeModule } from '@nestjs/sequelize';
+import { dataBaseConfig } from '@database/database.config';
+import { ConfigHelper } from '@shared/helpers/config.heper';
 import { LoggerModule } from '@modules/logger/logger.module';
-import { AppController } from './app.controller';
+import { ProductsModule } from '@modules/products/products.module';
 import { AppService } from './app.service';
 
 @Module({
@@ -13,9 +15,10 @@ import { AppService } from './app.service';
       load: [ConfigHelper.getEnvironmentSettings],
     }),
     LoggerModule,
+    SequelizeModule.forRoot(dataBaseConfig),
+    ProductsModule,
   ],
   controllers: [
-    AppController
   ],
   providers: [
     AppService

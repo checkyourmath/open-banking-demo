@@ -21,6 +21,9 @@
       "@src/*": [
         "./src/*"
       ],
+      "@database/*": [
+        "./src/database/*"
+      ],
       "@shared/*": [
         "./src/shared/*"
       ],
