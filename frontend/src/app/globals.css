@@ -1,46 +1,79 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ====  */
+@font-face {
+  font-family: "Cerebri Sans";
+  src: url("../../public/assets/fonts/CerebriSans-Heavy.eot");
+  src: url("../../public/assets/fonts/CerebriSans-Heavy.eot?#iefix")
+      format("embedded-opentype"),
+    url("../../public/assets/fonts/CerebriSans-Heavy.woff2") format("woff2"),
+    url("../../public/assets/fonts/CerebriSans-Heavy.woff") format("woff"),
+    url("../../public/assets/fonts/CerebriSans-Heavy.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@font-face {
+  font-family: "Cerebri Sans";
+  src: url("../../public/assets/fonts/CerebriSans-Bold.eot");
+  src: url("../../public/assets/fonts/CerebriSans-Bold.eot?#iefix")
+      format("embedded-opentype"),
+    url("../../public/assets/fonts/CerebriSans-Bold.woff2") format("woff2"),
+    url("../../public/assets/fonts/CerebriSans-Bold.woff") format("woff"),
+    url("../../public/assets/fonts/CerebriSans-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
+@font-face {
+  font-family: "Cerebri Sans";
+  src: url("../../public/assets/fonts/CerebriSans-ExtraBold.eot");
+  src: url("../../public/assets/fonts/CerebriSans-ExtraBold.eot?#iefix")
+      format("embedded-opentype"),
+    url("../../public/assets/fonts/CerebriSans-ExtraBold.woff2") format("woff2"),
+    url("../../public/assets/fonts/CerebriSans-ExtraBold.woff") format("woff"),
+    url("../../public/assets/fonts/CerebriSans-ExtraBold.ttf")
+      format("truetype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@font-face {
+  font-family: "Cerebri Sans";
+  src: url("../../public/assets/fonts/CerebriSans-Medium.eot");
+  src: url("../../public/assets/fonts/CerebriSans-Medium.eot?#iefix")
+      format("embedded-opentype"),
+    url("../../public/assets/fonts/CerebriSans-Medium.woff2") format("woff2"),
+    url("../../public/assets/fonts/CerebriSans-Medium.woff") format("woff"),
+    url("../../public/assets/fonts/CerebriSans-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+@font-face {
+  font-family: "Cerebri Sans";
+  src: url("../../public/assets/fonts/CerebriSans-Regular.eot");
+  src: url("../../public/assets/fonts/CerebriSans-Regular.eot?#iefix")
+      format("embedded-opentype"),
+    url("../../public/assets/fonts/CerebriSans-Regular.woff2") format("woff2"),
+    url("../../public/assets/fonts/CerebriSans-Regular.woff") format("woff"),
+    url("../../public/assets/fonts/CerebriSans-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+@font-face {
+  font-family: "Cerebri Sans";
+  src: url("../../public/assets/fonts/CerebriSans-SemiBold.eot");
+  src: url("../../public/assets/fonts/CerebriSans-SemiBold.eot?#iefix")
+      format("embedded-opentype"),
+    url("../../public/assets/fonts/CerebriSans-SemiBold.woff2") format("woff2"),
+    url("../../public/assets/fonts/CerebriSans-SemiBold.woff") format("woff"),
+    url("../../public/assets/fonts/CerebriSans-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
 }

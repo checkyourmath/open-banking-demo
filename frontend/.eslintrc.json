@@ -13,7 +13,6 @@
     {
       "files": ["*.ts", "*.tsx"],
       "rules": {
-        "@typescript-eslint/explicit-function-return-type": "error",
         "@typescript-eslint/explicit-member-accessibility": [
           "error",
           {
@@ -23,14 +22,14 @@
             }
           }
         ],
-        "@typescript-eslint/no-explicit-any": "error",
+        "@typescript-eslint/no-explicit-any": "off",
         "@typescript-eslint/no-floating-promises": "error",
-        "@typescript-eslint/no-unused-vars": "error",
+        "@typescript-eslint/no-require-imports": "off",
+        "@typescript-eslint/no-unused-vars": "off",
         "@typescript-eslint/no-var-requires": "off",
         "no-console": "error",
         "no-promise-executor-return": "error",
-        "no-return-await": "error",
-        "quotes": ["error", "single", { "avoidEscape": true }]
+        "no-return-await": "error"
       }
     }
   ]
