@@ -80,16 +80,6 @@ export interface MenuType {
   submenus?: any[];
   pages?: boolean;
 }
-//brand data type
-export interface BrandDataType {
-  id: number;
-  image: StaticImageData;
-}
-//brand data type
-export interface InstragramDataType {
-  id: number;
-  image: StaticImageData;
-}
 //hero slider data
 export interface HeroDataType {
   id: number;

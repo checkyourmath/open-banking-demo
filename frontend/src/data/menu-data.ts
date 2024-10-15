@@ -3,7 +3,7 @@ import { MenuType } from "@shared/interFace/interFace";
 const menu_data: MenuType[] = [
     {
         id: 1,
-        hasDropdown: true,
+        hasDropdown: false,
         active: true,
         title: "Home",
         pluseIncon: true,
@@ -43,17 +43,11 @@ const menu_data: MenuType[] = [
     },
     {
         id: 4,
-        hasDropdown: true,
+        hasDropdown: false,
         active: true,
         title: "Blog",
         pluseIncon: true,
-        link: "#",
-        submenus: [
-            { title: "Blog grid", link: "/blog-grid" },
-            { title: "Blog-grid-sidebar", link: "/blog-grid-sidebar" },
-            { title: "Blog-standard", link: "/blog-standard" },
-            { title: "blog details", link: "/blog-details" },
-        ],
+        link: "/blog",
     },
     {
         id: 5,
@@ -69,7 +63,6 @@ const menu_data: MenuType[] = [
             { title: "Privacy & Policy", link: "/privacy-policy" },
             { title: "Refund Policy", link: "/refund-policy" },
             { title: "Faq", link: "/faq" },
-            { title: "404 Page", link: "/404-page" },
         ],
     },
     {
