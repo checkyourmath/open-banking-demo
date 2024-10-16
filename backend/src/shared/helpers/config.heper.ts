@@ -36,8 +36,9 @@ export class ConfigHelper {
       environmentName,
       openBanking: {
         clientId: ConfigHelper.getEnvironmentSetting('OPEN_BANKING_CLIENT_ID'),
-        apiKey: ConfigHelper.getEnvironmentSetting('OPEN_BANKING_API_KEY'),
-      }
+        clientSecret: ConfigHelper.getEnvironmentSetting('OPEN_BANKING_CLIENT_SECRET'),
+      },
+      appBaseUrl: ConfigHelper.getEnvironmentSetting('APP_BASE_URL'),
     }
   }
 

@@ -5,7 +5,7 @@ import { IsNotEmpty, IsNumber, IsOptional, IsString, Length } from 'class-valida
 import { v4 as uuidv4 } from 'uuid';
 
 @Table({
-  tableName: 'product',
+  tableName: 'Product',
 })
 export class Product extends Model<Product> {
   @Column({

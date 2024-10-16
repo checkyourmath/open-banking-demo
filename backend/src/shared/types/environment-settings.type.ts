@@ -5,6 +5,7 @@ export type EnvironmentSettings = {
   environmentName: EnvironmentName;
   openBanking: {
     clientId: string;
-    apiKey: string;
+    clientSecret: string;
   }
+  appBaseUrl: string;
 }

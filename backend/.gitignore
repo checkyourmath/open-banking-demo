@@ -5,6 +5,7 @@
 
 # Database
 .db/data.sqlite3
+.db/data.sqlite3-journal
 
 # Logs
 logs

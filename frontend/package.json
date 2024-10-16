@@ -13,7 +13,8 @@
     "start": "next start -p 4000",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
-    "precommit": "npm run lint"
+    "precommit": "npm run lint",
+    "prepare": "npm link open-banking-eu-v2"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",

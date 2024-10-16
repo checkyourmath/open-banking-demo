@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { CreateProductDto } from './dto/create-product.dto';
+import { ProductCreateDto } from '@modules/products/dtos/product-create.dto';
 import { Product } from './entities/product.entity';
 
 @Injectable()
@@ -10,7 +10,7 @@ export class ProductsService {
     private productRepository: typeof Product,
   ) {}
 
-  create(createProductDto: CreateProductDto): Promise<Product> {
+  create(createProductDto: ProductCreateDto): Promise<Product> {
     return this.productRepository.create(createProductDto);
   }
 
