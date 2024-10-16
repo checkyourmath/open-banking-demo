@@ -57,7 +57,6 @@ export class HttpExceptionFilter implements ExceptionFilter {
     }
 
     const errorAppResponse: ErrorAppResponse = {
-      status: exceptionStatus,
       isSuccess: false,
       path: request.url,
       errors
