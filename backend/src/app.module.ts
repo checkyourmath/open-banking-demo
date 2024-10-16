@@ -5,7 +5,7 @@ import { dataBaseConfig } from '@database/database.config';
 import { ConfigHelper } from '@shared/helpers/config.heper';
 import { LoggerModule } from '@modules/logger/logger.module';
 import { ProductsModule } from '@modules/products/products.module';
-import { AppService } from './app.service';
+import { BankingModule } from '@modules/banking/banking.module';
 
 @Module({
   imports: [
@@ -17,11 +17,9 @@ import { AppService } from './app.service';
     LoggerModule,
     SequelizeModule.forRoot(dataBaseConfig),
     ProductsModule,
+    BankingModule,
   ],
-  controllers: [
-  ],
-  providers: [
-    AppService
-  ],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
