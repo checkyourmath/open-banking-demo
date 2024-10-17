@@ -52,7 +52,7 @@ const ShopProductArea = () => {
                         </div>
                         <div className="col-xl-4 col-lg-5 col-md-5">
                             <div className="pro-tab1-content pt-15 mb-20 text-md-center">
-                                <h4>Showing 50 Products</h4>
+                                <h4>Showing {products.length} Products</h4>
                             </div>
                         </div>
                         <div className="col-xl-4 col-lg-4 col-md-4">

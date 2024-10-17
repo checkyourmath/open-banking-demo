@@ -50,9 +50,6 @@ const HeaderOne = () => {
                                         <button onClick={() => { setCartOpen(!cartOpen) }}><i className="far fa-cart-plus"></i>
                                             <span className="cart-1">{TotalCartQuantity}</span>
                                         </button>
-                                        <Link href="/wishlist" style={{ marginLeft: '10px' }}><i className="far fa-heart">
-                                            <span className="cart-1">{TotalWishListQuantity}</span>
-                                        </i></Link>
                                     </div>
                                     <div className="header-search f-right d-none d-xl-block">
                                         <form className="header-search-form">

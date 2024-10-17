@@ -47,49 +47,7 @@ const ShopModal = () => {
                                                         {modalData?.image && <Image width={0} height={0} src={modalData?.image} style={{ width: "auto", height: "auto" }} alt="product" />}
                                                     </div>
                                                 </div>
-                                                <div className="tab-pane fade" id="nav2" role="tabpanel" aria-labelledby="nav2-tab">
-                                                    <div className="product__modal-img w-img">
-                                                        <Image src={productTwo} style={{ width: "100%", height: "auto" }} alt="product" />
-                                                    </div>
-                                                </div>
-                                                <div className="tab-pane fade" id="nav3" role="tabpanel" aria-labelledby="nav3-tab">
-                                                    <div className="product__modal-img w-img">
-                                                        <Image src={productThere} style={{ width: "100%", height: "auto" }} alt="product" />
-                                                    </div>
-                                                </div>
-                                                <div className="tab-pane fade" id="nav4" role="tabpanel" aria-labelledby="nav4-tab">
-                                                    <div className="product__modal-img w-img">
-                                                        <Image src={productFour} style={{ width: "100%", height: "auto" }} alt="product" />
-                                                    </div>
-                                                </div>
                                             </div>
-                                            <ul className="nav nav-tabs" id="modalTab" role="tablist">
-                                                <li className="nav-item" role="presentation">
-                                                    <button className="nav-link active" id="nav1-tab" data-bs-toggle="tab"
-                                                        data-bs-target="#nav1" type="button" role="tab" aria-controls="nav1"
-                                                        aria-selected="true">
-                                                        {modalData?.image && <Image width={0} height={0} src={modalData?.image} style={{ width: "100%", height: "auto" }} alt="product" />}
-                                                    </button>
-                                                </li>
-                                                <li className="nav-item" role="presentation">
-                                                    <button className="nav-link" id="nav2-tab" data-bs-toggle="tab" data-bs-target="#nav2"
-                                                        type="button" role="tab" aria-controls="nav2" aria-selected="false">
-                                                        <Image src={productTwo} style={{ width: "100%", height: "auto" }} alt="product" />
-                                                    </button>
-                                                </li>
-                                                <li className="nav-item" role="presentation">
-                                                    <button className="nav-link" id="nav3-tab" data-bs-toggle="tab" data-bs-target="#nav3"
-                                                        type="button" role="tab" aria-controls="nav3" aria-selected="false">
-                                                        <Image src={productThere} style={{ width: "100%", height: "auto" }} alt="product" />
-                                                    </button>
-                                                </li>
-                                                <li className="nav-item" role="presentation">
-                                                    <button className="nav-link" id="nav4-tab" data-bs-toggle="tab" data-bs-target="#nav4"
-                                                        type="button" role="tab" aria-controls="nav4" aria-selected="false">
-                                                        <Image src={productFour} style={{ width: "100%", height: "auto" }} alt="product" />
-                                                    </button>
-                                                </li>
-                                            </ul>
                                         </div>
                                     </div>
                                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
@@ -97,9 +55,7 @@ const ShopModal = () => {
                                         <div className="product__modal-content">
                                             <h4><Link href={`/shop-details/${modalData?.id}`}>{modalData?.title}</Link></h4>
                                             <div className="product__modal-des mb-40">
-                                                <p>Typi non habent claritatem insitam, est usus legentis in iis qui facit eorum
-                                                    claritatem.
-                                                    Investigationes demonstraverunt
+                                                <p>{modalData?.description}
                                                 </p>
                                             </div>
                                             <div className="product__stock">
@@ -109,21 +65,6 @@ const ShopModal = () => {
                                             <div className="product__stock sku mb-30">
                                                 <span>SKU:</span>
                                                 <span>Juicera C49J89: £875, Debenhams Plus</span>
-                                            </div>
-                                            <div className="product__review d-sm-flex">
-                                                <div className="rating rating__shop mb-15 mr-35">
-                                                    <ul>
-                                                        <li><Link href="#"><i className="fal fa-star"></i></Link></li>
-                                                        <li><Link href="#"><i className="fal fa-star"></i></Link></li>
-                                                        <li><Link href="#"><i className="fal fa-star"></i></Link></li>
-                                                        <li><Link href="#"><i className="fal fa-star"></i></Link></li>
-                                                        <li><Link href="#"><i className="fal fa-star"></i></Link></li>
-                                                    </ul>
-                                                </div>
-                                                <div className="product__add-review mb-15">
-                                                    <span><Link href="shop-details">1 Review</Link></span>
-                                                    <span><Link href="shop-details">Add Review</Link></span>
-                                                </div>
                                             </div>
                                             <div className="product__price">
                                                 <span>${modalData?.price}</span>

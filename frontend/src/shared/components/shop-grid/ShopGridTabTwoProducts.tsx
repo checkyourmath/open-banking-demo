@@ -6,7 +6,7 @@ import { Product } from '@shared/interface';
 
 const ShopGridTabTwoProducts = ({ products }: { products: Product[] }) => {
     const { setModalData } = useGlobalContext()
-    const { UseAddToCart, UseAddToWishlist } = useCart();
+    const { UseAddToCart } = useCart();
     return (
         <>
             {
@@ -41,7 +41,6 @@ const ShopGridTabTwoProducts = ({ products }: { products: Product[] }) => {
                                 </div>
                                 <p>{item.description}</p>
                                 <div className="product-action product-02-action">
-                                    <button className="action-btn" onClick={() => UseAddToWishlist(item)}><i className="far fa-heart"></i></button>
                                     <button className="action-btn" onClick={() => UseAddToCart(item)} ><i className="far fa-cart-plus"></i></button>
                                     <button className="action-btn" onClick={() => setModalData(item)} data-bs-toggle="modal"
                                         data-bs-target="#productModalId"><i className="far fa-eye"></i></button>

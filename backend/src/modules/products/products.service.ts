@@ -31,7 +31,9 @@ export class ProductsService {
   }
 
   findAll(): Promise<Product[]> {
-    return this.productModel.findAll();
+    return this.productModel.findAll({
+      order: [ ['createdAt', 'DESC'] ]
+    });
   }
 
   // findOne(id: string) {
