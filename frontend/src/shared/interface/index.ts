@@ -8,6 +8,11 @@ export type ApiResponse<T> = {
 };
 
 
+export type Order = {
+  productId: string;
+  quantity: number;
+}[];
+
 // context api data type
 export interface AppContextType {
   scrollDirection?: string;
@@ -41,7 +46,7 @@ export interface Product {
   category: string;
   description?: string;
   price: number;
-  // quantity: number;
+  quantity: number;
   // oldPrice?: number;
   // bannerTag?: string;
   // bgClass?: string;

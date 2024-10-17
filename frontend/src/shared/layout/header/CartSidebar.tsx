@@ -1,11 +1,12 @@
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
+import Image from 'next/image';
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { RootState } from "@shared/redux/store";
 import { cart_product, decrease_quantity, remove_cart_product } from "@shared/redux/slices/cartSlice";
 import { Product } from "@shared/interface";
+import useCart from '@shared/hooks/useCart';
 
 
 interface HeaderCartProps {
@@ -18,6 +19,7 @@ const CartSidebar: React.FC<HeaderCartProps> = ({ setCartOpen, cartOpen }) => {
     const handleRemoveCart = (product: Product) => {
         dispatch(remove_cart_product(product));
     };
+    const { purchase } = useCart();
 
     const cartProducts = useSelector(
         (state: RootState) => state.cart.cartProducts
@@ -45,7 +47,7 @@ const CartSidebar: React.FC<HeaderCartProps> = ({ setCartOpen, cartOpen }) => {
                         <i className="fal fa-times"></i>
                     </button>
                 </div>
-                <div className="cartmini__widget">
+                <div className="cartmini__widget" style={{ padding: '20px' }}>
                     <div className="cartmini__inner">
                         {cartProducts.length === 0 && <h5 className="zoma-cart">Your cart is empty</h5>}
                         {cartProducts.length >= 1 && (
@@ -57,9 +59,11 @@ const CartSidebar: React.FC<HeaderCartProps> = ({ setCartOpen, cartOpen }) => {
                                                 <Link href="/">
                                                     {item.image && (
                                                         <Image
-                                                            src={item.image}
-                                                            style={{ width: "auto", height: "auto" }}
-                                                            alt="img not found"
+                                                          width={0}
+                                                          height={0}
+                                                          src={item.image}
+                                                          style={{ width: "auto", height: "auto" }}
+                                                          alt="img not found"
                                                         />
                                                     )}
                                                 </Link>
@@ -101,7 +105,14 @@ const CartSidebar: React.FC<HeaderCartProps> = ({ setCartOpen, cartOpen }) => {
                                 </div>
                                 <div className="cartmini__viewcart">
                                     <Link className="zoma-sec-btn" href="/cart/">View cart</Link>
-                                    <Link className="zoma-sec-btn" href="/checkout/">Checkout</Link>
+                                    <Link
+                                      className="zoma-sec-btn"
+                                      href="#"
+                                      onClick={(e) => {
+                                          e.preventDefault();
+                                          purchase();
+                                      }}
+                                    >Purchase</Link>
                                 </div>
                             </>
                         )}

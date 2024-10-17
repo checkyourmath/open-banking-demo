@@ -13,7 +13,7 @@ export class BankingService implements OnModuleInit {
 
   constructor(
     @InjectModel(BankingState)
-    private bankingStateRepository: typeof BankingState,
+    private bankingStateModel: typeof BankingState,
     private configService: ConfigService<EnvironmentSettings>,
     private logger: AppLogger,
   ) {
@@ -87,7 +87,7 @@ export class BankingService implements OnModuleInit {
   }
 
   private async initBankingState(): Promise<BankingState> {
-    const [ bankingState ] = await this.bankingStateRepository.findOrCreate({
+    const [ bankingState ] = await this.bankingStateModel.findOrCreate({
       where: { id: BANKING_STATE_PRIMARY_ID }
     });
 
@@ -95,7 +95,7 @@ export class BankingService implements OnModuleInit {
   }
 
   private async getBankingState(): Promise<BankingState | null> {
-    return this.bankingStateRepository.findOne({
+    return this.bankingStateModel.findOne({
       where: { id: BANKING_STATE_PRIMARY_ID }
     });
   }

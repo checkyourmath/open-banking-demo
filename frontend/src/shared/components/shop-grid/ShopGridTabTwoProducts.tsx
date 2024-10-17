@@ -1,7 +1,6 @@
 import useGlobalContext from '@shared/hooks/use-context';
 import useCart from '@shared/hooks/useCart';
 import Image from 'next/image';
-import Link from 'next/link';
 import React from 'react';
 import { Product } from '@shared/interface';
 
@@ -16,8 +15,10 @@ const ShopGridTabTwoProducts = ({ products }: { products: Product[] }) => {
                         <div className="col-xl-4 col-lg-4">
                             <div className="product mb-30">
                                 <div className="product-img pos-rel" style={{ width: "374px", height: "414px" }}>
-                                    <img
+                                    <Image
                                       src={item.image}
+                                      width={0}
+                                      height={0}
                                       style={{
                                           width: "100%",
                                           height: 'auto',
@@ -35,7 +36,7 @@ const ShopGridTabTwoProducts = ({ products }: { products: Product[] }) => {
                             <div className="product-list-content mb-30">
                                 <div className="product-text">
                                     <h5>{item.category}</h5>
-                                    <h4><Link href={`/product-details/${item.id}`}>{item.title}</Link></h4>
+                                    <h4>{item.title}</h4>
                                     <span>${item.price}</span>
                                 </div>
                                 <p>{item.description}</p>

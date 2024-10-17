@@ -1,10 +1,10 @@
 "use client"
 
-import { ProductsType } from "@/interFace/interFace";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
+import { Order, Product } from '@shared/interface';
 interface CartState {
-  cartProducts: ProductsType[];
+  cartProducts: Product[];
 }
 
 const initialState: CartState = {
@@ -15,9 +15,27 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    cart_product: (state, { payload }: PayloadAction<ProductsType>) => {
+
+    cart_purchase: (state) => {
+      const { cartProducts } = state;
+
+      if (!cartProducts.length) {
+        return;
+      }
+
+      const order: Order = [];
+
+      cartProducts.forEach(product => {
+        order.push({
+          productId: product.id,
+          quantity: product.quantity
+        })
+      });
+    },
+
+    cart_product: (state, { payload }: PayloadAction<Product>) => {
       const productIndex = state.cartProducts.findIndex(
-        (item) => item.id === payload.id
+        (item: Product) => item.id === payload.id
       );
       if (productIndex >= 0) {
         state.cartProducts[productIndex].quantity! += 1;
@@ -32,9 +50,9 @@ export const cartSlice = createSlice({
         });
       }
     },
-    remove_cart_product: (state, { payload }: PayloadAction<ProductsType>) => {
+    remove_cart_product: (state, { payload }: PayloadAction<Product>) => {
       state.cartProducts = state.cartProducts.filter(
-        (item) => item.id !== payload.id
+        (item: Product) => item.id !== payload.id
       );
       toast.error(`Remove from your cart`, {
         position: "top-left",
@@ -50,9 +68,9 @@ export const cartSlice = createSlice({
       }
     },
 
-    decrease_quantity: (state, { payload }: PayloadAction<ProductsType>) => {
+    decrease_quantity: (state, { payload }: PayloadAction<Product>) => {
       const cartIndex = state.cartProducts.findIndex(
-        (item) => item.id === payload.id
+        (item: Product) => item.id === payload.id
       );
       if (cartIndex >= 0) {
         const totalCart = state.cartProducts[cartIndex].quantity ?? 0;
@@ -73,6 +91,7 @@ export const {
   remove_cart_product,
   clear_cart,
   decrease_quantity,
+  cart_purchase,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

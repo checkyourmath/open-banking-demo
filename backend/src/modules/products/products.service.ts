@@ -7,21 +7,21 @@ import { Product } from './entities/product.entity';
 export class ProductsService {
   constructor(
     @InjectModel(Product)
-    private productRepository: typeof Product,
+    private productModel: typeof Product,
   ) {}
 
   create(createProductDto: ProductCreateDto): Promise<Product> {
     const imageBase64 = createProductDto.file.buffer.toString('base64');
     const image = `data:${createProductDto.file.mimetype};base64,${imageBase64}`;
 
-    return this.productRepository.create({
+    return this.productModel.create({
       ...createProductDto,
       image,
     });
   }
 
   findAll(): Promise<Product[]> {
-    return this.productRepository.findAll();
+    return this.productModel.findAll();
   }
 
   // findOne(id: string) {

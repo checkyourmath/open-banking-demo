@@ -23,7 +23,6 @@ const menu_data: MenuType[] = [
             { title: "Category Four", link: "/" },
             { title: "Category Five", link: "/" },
             { title: "Wishlist", link: "/wishlist" },
-            { title: "Checkout", link: "/checkout" },
             { title: "Cart", link: "/cart" },
             { title: "Login", link: "/login" },
             { title: "Register", link: "/register" },

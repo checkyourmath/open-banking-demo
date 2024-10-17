@@ -2,8 +2,10 @@ import { Controller, Get, HttpCode, HttpStatus, Query, UseInterceptors } from '@
 import { BankingService } from './banking.service';
 import { BankingConnectQuery } from './queries/banking-connect.query';
 import { HttpResponseInterceptor } from '@shared/interceptors/http-response.interceptor';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('banking')
+@ApiTags('banking')
 @UseInterceptors(HttpResponseInterceptor)
 export class BankingController {
   constructor(

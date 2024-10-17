@@ -16,5 +16,8 @@ import { BankingState } from './entities/banking-state.entity';
   providers: [
     BankingService
   ],
+  exports: [
+    BankingService
+  ]
 })
 export class BankingModule {}

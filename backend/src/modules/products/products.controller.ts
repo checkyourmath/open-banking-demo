@@ -8,7 +8,7 @@ import {
   ParseFilePipe,
   MaxFileSizeValidator
 } from '@nestjs/common';
-import { ApiConsumes } from '@nestjs/swagger';
+import { ApiConsumes, ApiTags } from '@nestjs/swagger';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ProductsService } from './products.service';
 import { ProductCreateDto } from '@modules/products/dtos/product-create.dto';
@@ -17,6 +17,7 @@ import { Product } from '@modules/products/entities/product.entity';
 import { MAX_IMAGE_FILE_SIZE } from '@modules/products/constants';
 
 @Controller('products')
+@ApiTags('products')
 @UseInterceptors(HttpResponseInterceptor)
 export class ProductsController {
   constructor(private readonly productService: ProductsService) {}

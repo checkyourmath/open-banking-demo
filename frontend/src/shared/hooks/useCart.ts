@@ -1,5 +1,5 @@
 import { Product } from '@shared/interface';
-import { cart_product, clear_cart, decrease_quantity } from '@shared/redux/slices/cartSlice';
+import { cart_product, cart_purchase, clear_cart, decrease_quantity } from '@shared/redux/slices/cartSlice';
 import { clear_wishlist, wishlist_product } from '@shared/redux/slices/wishlist-slice';
 import { RootState } from '@shared/redux/store';
 import { useSelector } from 'react-redux';
@@ -7,6 +7,10 @@ import { useDispatch } from 'react-redux';
 
 const useCart = () => {
     const dispatch = useDispatch();
+
+    const purchase = () => {
+      dispatch(cart_purchase());
+    };
 
     // Add product on cart
     const UseAddToCart = (product: Product) => {
@@ -58,7 +62,8 @@ const useCart = () => {
         UseWishlstQuantity,
         UseClearCart,
         UseClearWishlist,
-        UseRemoveDecreaseCart
+        UseRemoveDecreaseCart,
+        purchase
     }
 };
 

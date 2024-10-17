@@ -6,6 +6,7 @@ import { ConfigHelper } from '@shared/helpers/config.heper';
 import { LoggerModule } from '@modules/logger/logger.module';
 import { ProductsModule } from '@modules/products/products.module';
 import { BankingModule } from '@modules/banking/banking.module';
+import { OrdersModule } from '@modules/orders/orders.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { BankingModule } from '@modules/banking/banking.module';
     SequelizeModule.forRoot(dataBaseConfig),
     ProductsModule,
     BankingModule,
+    OrdersModule,
   ],
   controllers: [],
   providers: [],
