@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, InternalServerErrorException } from '@nestjs/common';
+import { BadRequestException, Injectable, InternalServerErrorException, OnModuleInit } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { BankingService } from '@modules/banking/banking.service';
 import { ProductsService } from '@modules/products/products.service';
@@ -10,7 +10,7 @@ import { ConfigService } from '@nestjs/config';
 import { EnvironmentSettings } from '@shared/types/environment-settings.type';
 
 @Injectable()
-export class OrdersService {
+export class OrdersService implements OnModuleInit {
   constructor(
     private configService: ConfigService<EnvironmentSettings>,
     private bankingService: BankingService,
@@ -20,6 +20,11 @@ export class OrdersService {
     @InjectModel(OrderProduct)
     private orderProductModel: typeof OrderProduct,
   ) {
+  }
+
+  onModuleInit(): void {
+    // for webhooks you need to deploy public and use https
+    // TODO: poll payment statuses?
   }
 
   async create(orderCreateDto: OrderCreateDto): Promise<Order> {

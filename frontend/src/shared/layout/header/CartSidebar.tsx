@@ -35,7 +35,7 @@ const CartSidebar: React.FC<HeaderCartProps> = ({ setCartOpen, cartOpen }) => {
 
     useEffect(() => {
         stopPurchase();
-    }, []);
+    });
 
     return (
         <div className="cartmini__area">

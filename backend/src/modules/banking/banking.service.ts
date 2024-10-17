@@ -1,11 +1,12 @@
-import { Injectable, InternalServerErrorException, OnModuleInit } from '@nestjs/common';
+import { Injectable, InternalServerErrorException, NotFoundException, OnModuleInit } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { ConfigService } from '@nestjs/config';
-import { AcceptPayment, CreateAcceptPaymentParams, EventType, OpenBankingEUv2Client } from 'open-banking-eu-v2';
+import { AcceptPayment, CreateAcceptPaymentParams, EventType, OpenBankingEUv2Client, Payment as BankingPayment } from 'open-banking-eu-v2';
 import { EnvironmentSettings } from '@shared/types/environment-settings.type';
 import { BankingState } from './entities/banking-state.entity';
 import { AppLogger } from '@modules/logger/logger.service';
 import { BANKING_STATE_PRIMARY_ID } from '@modules/banking/constants';
+import { Payment } from '@modules/banking/entities/payment.entity';
 
 @Injectable()
 export class BankingService implements OnModuleInit {
@@ -74,6 +75,35 @@ export class BankingService implements OnModuleInit {
     }
 
     return this.bankingClient.createAcceptPayment(params);
+  }
+
+  async getPayment(paymentId: string): Promise<Payment> {
+    if (!this.bankingClient) {
+      throw new InternalServerErrorException('Banking Client is not initialized.');
+    }
+
+    let bankingPayment: BankingPayment | null = null;
+
+    try {
+      bankingPayment = await this.bankingClient.getPayment(paymentId);
+    } catch {
+      throw new InternalServerErrorException('Cannot get Payment');
+    }
+
+    if (!bankingPayment) {
+      throw new NotFoundException(`Payment ${paymentId} not found.`);
+    }
+
+    const payment: Payment = {
+      id: bankingPayment.id,
+      amount: bankingPayment.amount,
+      status: bankingPayment.status.code,
+      createdAt: bankingPayment.createdAt,
+      lastUpdated: bankingPayment.status.lastUpdated,
+      details: bankingPayment.status.details,
+    };
+
+    return payment;
   }
 
   private async initOpenBankingClient(): Promise<void> {

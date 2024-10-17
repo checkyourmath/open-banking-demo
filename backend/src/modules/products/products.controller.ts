@@ -8,7 +8,7 @@ import {
   ParseFilePipe,
   MaxFileSizeValidator
 } from '@nestjs/common';
-import { ApiConsumes, ApiTags } from '@nestjs/swagger';
+import { ApiConsumes, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ProductsService } from './products.service';
 import { ProductCreateDto } from '@modules/products/dtos/product-create.dto';
@@ -25,6 +25,7 @@ export class ProductsController {
   @Post()
   @ApiConsumes('multipart/form-data')
   @UseInterceptors(FileInterceptor('file'))
+  @ApiResponse({ type: Product })
   create(
     @Body() createProductDto: ProductCreateDto,
     @UploadedFile(
@@ -43,6 +44,7 @@ export class ProductsController {
   }
 
   @Get()
+  @ApiResponse({ type: Product, isArray: true })
   findAll(): Promise<Product[]> {
     return this.productService.findAll();
   }

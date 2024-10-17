@@ -3,7 +3,7 @@ import { BASE_URL } from './_constants';
 import { RefreshAccessTokenResponse } from './_sortme/refresh-access-token-reposne';
 import { EventCallbackMap, EventEmitter } from './_utils/event-emitter.class';
 import { CodeExchangeResponse } from './_dtos/code-exchange.response';
-import { AcceptPayment, Account } from './entities';
+import { AcceptPayment, Account, Payment } from './entities';
 import { EventType } from './enums';
 import { CreateAcceptPaymentParams } from './params';
 
@@ -115,6 +115,28 @@ export class OpenBankingEUv2Client {
     );
 
     return response.data;
+  }
+
+  public async getPayment(paymentId: string): Promise<Payment | null> {
+    try {
+      const response = await this.otherAxiosInstance.get<Payment>(
+        `v2/payments/accept/${paymentId}`,
+        {
+          auth: {
+            username: this.clientId,
+            password: this.clientSecret
+          }
+        }
+      );
+
+      return response.data;
+    } catch (error) {
+      if (error instanceof AxiosError && error.status === 404) {
+        return null;
+      }
+
+      throw error;
+    }
   }
 
   private _setTokens(params: { accessToken?: string; refreshToken?: string; skipEmit?: boolean }): void {

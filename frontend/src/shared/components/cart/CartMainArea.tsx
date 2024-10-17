@@ -30,8 +30,8 @@ const CartMainArea = () => {
     }, 0);
 
     useEffect(() => {
-        stopPurchase();
-    }, []);
+      stopPurchase();
+    });
 
     return (
         <>

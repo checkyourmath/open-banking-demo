@@ -68,7 +68,7 @@ const ShopModal = () => {
                                                     <button className="nav-link active" id="nav1-tab" data-bs-toggle="tab"
                                                         data-bs-target="#nav1" type="button" role="tab" aria-controls="nav1"
                                                         aria-selected="true">
-                                                        {modalData?.image && <img src={modalData?.image} style={{ width: "100%", height: "auto" }} alt="product" />}
+                                                        {modalData?.image && <Image width={0} height={0} src={modalData?.image} style={{ width: "100%", height: "auto" }} alt="product" />}
                                                     </button>
                                                 </li>
                                                 <li className="nav-item" role="presentation">
