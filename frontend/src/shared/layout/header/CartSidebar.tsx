@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { RootState } from "@shared/redux/store";
 import { cart_product, decrease_quantity, remove_cart_product } from "@shared/redux/slices/cartSlice";
-import { ProductsType } from "@shared/interFace/interFace";
+import { Product } from "@shared/interface";
 
 
 interface HeaderCartProps {
@@ -15,7 +15,7 @@ interface HeaderCartProps {
 
 const CartSidebar: React.FC<HeaderCartProps> = ({ setCartOpen, cartOpen }) => {
     const dispatch = useDispatch();
-    const handleRemoveCart = (product: ProductsType) => {
+    const handleRemoveCart = (product: Product) => {
         dispatch(remove_cart_product(product));
     };
 

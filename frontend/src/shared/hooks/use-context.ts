@@ -1,5 +1,5 @@
 import { AppContext } from "@shared/contextApi/AppProvider";
-import { AppContextType } from "@shared/interFace/interFace";
+import { AppContextType } from "@shared/interface";
 import { useContext } from "react"
 
 

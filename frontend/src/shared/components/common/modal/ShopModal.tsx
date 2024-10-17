@@ -8,7 +8,7 @@ import productFour from "@public/assets/img/products/06.png";
 import { useSelector } from 'react-redux';
 import { RootState } from '@shared/redux/store';
 import useGlobalContext from '@shared/hooks/use-context';
-import { ProductsType } from '@shared/interFace/interFace';
+import { Product } from '@shared/interface';
 import { useDispatch } from 'react-redux';
 import { cart_product, decrease_quantity } from '@shared/redux/slices/cartSlice';
 
@@ -19,10 +19,10 @@ const ShopModal = () => {
         (state: RootState) => state.cart.cartProducts
     );
     const myData = cartProducts.find((item) => item.id === modalData.id);
-    const handleAddToCart = (product: ProductsType) => {
+    const handleAddToCart = (product: Product) => {
         dispatch(cart_product(product))
     }
-    const handleDecressCart = (product: ProductsType) => {
+    const handleDecressCart = (product: Product) => {
         dispatch(decrease_quantity(product))
     }
 

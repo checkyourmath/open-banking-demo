@@ -2,16 +2,22 @@ import './globals.css';
 if (typeof window !== "undefined") {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   require("bootstrap/dist/js/bootstrap")
-};
+}
 import "@style/index.scss";
 import AppProvider from '@shared/contextApi/AppProvider';
 import ReduxProvider from '@shared/redux/provider';
 import { ToastContainer } from 'react-toastify';
+import process from 'process';
+import Script from 'next/script';
 
 export const metadata = {
   title: 'Open Banking Demo',
   description: 'Open Banking Demo application',
-}
+};
+
+const configScript = `window.config = {
+  apiBaseUrl: '${process.env.API_BASE_URL}'
+};`
 
 export default function RootLayout({
   children,
@@ -31,6 +37,8 @@ export default function RootLayout({
           />
           <link rel="icon" href="/favicon.ico" />
         </head>
+
+        <Script id="config-script">{configScript}</Script>
 
         <body suppressHydrationWarning={true}>
           <ReduxProvider>

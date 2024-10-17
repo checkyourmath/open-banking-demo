@@ -1,8 +1,11 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, UseInterceptors } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { ProductCreateDto } from '@modules/products/dtos/product-create.dto';
+import { HttpResponseInterceptor } from '@shared/interceptors/http-response.interceptor';
+import { Product } from '@modules/products/entities/product.entity';
 
 @Controller('products')
+@UseInterceptors(HttpResponseInterceptor)
 export class ProductsController {
   constructor(private readonly productService: ProductsService) {}
 
@@ -14,7 +17,7 @@ export class ProductsController {
   }
 
   @Get()
-  findAll() {
+  findAll(): Promise<Product[]> {
     return this.productService.findAll();
   }
 

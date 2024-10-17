@@ -1,4 +1,4 @@
-import { MenuType } from "@shared/interFace/interFace";
+import { MenuType } from "@shared/interface";
 
 const menu_data: MenuType[] = [
     {

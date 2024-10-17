@@ -1,4 +1,4 @@
-import { SelcetType } from "@shared/interFace/interFace";
+import { SelcetType } from "@shared/interface";
 
 const productSelectOptionData: SelcetType[] = [
     {

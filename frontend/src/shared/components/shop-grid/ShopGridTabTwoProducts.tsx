@@ -3,9 +3,9 @@ import useCart from '@shared/hooks/useCart';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import { ProductsType } from '@shared/interFace/interFace';
+import { Product } from '@shared/interface';
 
-const ShopGridTabTwoProducts = ({ products }: { products: ProductsType[] }) => {
+const ShopGridTabTwoProducts = ({ products }: { products: Product[] }) => {
     const { setModalData } = useGlobalContext()
     const { UseAddToCart, UseAddToWishlist } = useCart();
     return (
@@ -25,11 +25,11 @@ const ShopGridTabTwoProducts = ({ products }: { products: ProductsType[] }) => {
                         <div className="col-xl-8 col-lg-8">
                             <div className="product-list-content mb-30">
                                 <div className="product-text">
-                                    <h5>{item.subTitle}</h5>
+                                    <h5>{item.category}</h5>
                                     <h4><Link href={`/product-details/${item.id}`}>{item.title}</Link></h4>
                                     <span>${item.price}</span>
                                 </div>
-                                <p>{item.desc}</p>
+                                <p>{item.description}</p>
                                 <div className="product-action product-02-action">
                                     <button className="action-btn" onClick={() => UseAddToWishlist(item)}><i className="far fa-heart"></i></button>
                                     <button className="action-btn" onClick={() => UseAddToCart(item)} ><i className="far fa-cart-plus"></i></button>

@@ -45,6 +45,16 @@ export class Product extends Model<Product> {
   @IsOptional()
   @IsString()
   @IsNotEmpty()
+  description?: string;
+
+  @Column({
+    type: DataTypes.TEXT,
+    allowNull: true,
+  })
+  @ApiProperty({ type: String, required: false })
+  @IsOptional()
+  @IsString()
+  @IsNotEmpty()
   image?: string;
 
   @Column({

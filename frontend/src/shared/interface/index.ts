@@ -1,5 +1,13 @@
 import { StaticImageData } from 'next/image';
 import React from 'react';
+
+export type ApiResponse<T> = {
+  isSuccess: boolean;
+  data: T;
+  errors?: { message: string; code: number; }[];
+};
+
+
 // context api data type
 export interface AppContextType {
   scrollDirection?: string;
@@ -26,20 +34,20 @@ export interface BannerDataType {
 
 }
 // product type
-export interface ProductsType {
-  id: number;
+export interface Product {
+  id: string;
   image: StaticImageData;
-  imageTwo?: StaticImageData;
   title: string;
-  subTitle: string;
+  category: string;
+  description?: string;
   price: number;
-  quantity: number;
-  oldPrice?: number;
-  bannerTag?: string;
-  bgClass?: string;
-  desc?: string;
-  totalCard?: number;
-  rating?: number
+  // quantity: number;
+  // oldPrice?: number;
+  // bannerTag?: string;
+  // bgClass?: string;
+  // desc?: string;
+  // totalCard?: number;
+  // rating?: number
 }
 //counter type
 export interface CounterType {

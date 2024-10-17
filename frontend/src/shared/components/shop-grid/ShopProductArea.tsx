@@ -1,14 +1,29 @@
 "use client"
-import React from 'react';
+
+import React, { useEffect, useState } from 'react';
 import ShopModal from '../common/modal/ShopModal';
 import NiceSelect from '../common/NiceSelect';
 import productSelectOptionData from '@data/product-select-option-data';
 import ShopGridTabTwoProducts from './ShopGridTabTwoProducts';
 import ShopGridTabOneProducts from './ShopGridTabOneProducts';
 import products_data from '@data/products-data';
+import { Product } from '@shared/interface';
+import { getProducts } from '@shared/http/products.http';
 
 const ShopProductArea = () => {
-    const selectHandler = () => { }
+    const [ isLoading, setIsLoading ] = useState<boolean>(true);
+    const [ products, setProducts ] = useState<Product[]>([]);
+    const selectHandler = () => { };
+
+    useEffect(() => {
+        void loadProducts();
+    }, []);
+
+    const loadProducts = async () => {
+        setIsLoading(true);
+        setProducts(await getProducts());
+        setIsLoading(false);
+    }
 
     return (
         <>
@@ -62,14 +77,14 @@ const ShopProductArea = () => {
                               aria-labelledby="pills-home-tab">
                                 <div className="row">
                                     <ShopGridTabOneProducts
-                                      products={products_data.slice(72, 81)}
+                                      products={products}
                                     />
                                 </div>
                             </div>
                             <div className="tab-pane fade" id="pills-profile" role="tabpanel"
                               aria-labelledby="pills-profile-tab">
                                 <ShopGridTabTwoProducts
-                                  products={products_data.slice(81, 87)}
+                                  products={products}
                                 />
                             </div>
                         </div>

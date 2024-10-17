@@ -1,5 +1,5 @@
 import { AppContext } from "@shared/contextApi/AppProvider";
-import { AppContextType } from "@shared/interFace/interFace";
+import { AppContextType } from "@shared/interface";
 import { usePathname } from "next/navigation";
 import { useContext, useEffect } from "react";
 

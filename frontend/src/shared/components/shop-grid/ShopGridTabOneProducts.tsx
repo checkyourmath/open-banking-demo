@@ -1,11 +1,10 @@
 import useGlobalContext from '@shared/hooks/use-context';
 import useCart from '@shared/hooks/useCart';
 import Image from 'next/image';
-import Link from 'next/link';
 import React from 'react';
-import { ProductsType } from '@shared/interFace/interFace';
+import { Product } from '@shared/interface';
 
-const ShopGridTabOneProducts = ({ products }: { products: ProductsType[] }) => {
+const ShopGridTabOneProducts = ({ products }: { products: Product[] }) => {
     const { setModalData } = useGlobalContext()
     const { UseAddToCart, UseAddToWishlist } = useCart();
     return (
@@ -28,7 +27,7 @@ const ShopGridTabOneProducts = ({ products }: { products: ProductsType[] }) => {
                                 </div>
                             </div>
                             <div className="product-text">
-                                <h5>{item.subTitle}</h5>
+                                <h5>{item.category}</h5>
                                 <h4 style={{ cursor: 'pointer' }} onClick={() => setModalData(item)} data-bs-toggle="modal"
                                   data-bs-target="#productModalId">{item.title}</h4>
                                 <span>${item.price}</span>

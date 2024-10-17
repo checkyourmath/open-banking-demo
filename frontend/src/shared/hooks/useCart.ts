@@ -1,4 +1,4 @@
-import { ProductsType } from '@shared/interFace/interFace';
+import { Product } from '@shared/interface';
 import { cart_product, clear_cart, decrease_quantity } from '@shared/redux/slices/cartSlice';
 import { clear_wishlist, wishlist_product } from '@shared/redux/slices/wishlist-slice';
 import { RootState } from '@shared/redux/store';
@@ -9,15 +9,15 @@ const useCart = () => {
     const dispatch = useDispatch();
 
     // Add product on cart
-    const UseAddToCart = (product: ProductsType) => {
+    const UseAddToCart = (product: Product) => {
         dispatch(cart_product(product));
     };
     // Add product on wishlist 
-    const UseAddToWishlist = (product: ProductsType) => {
+    const UseAddToWishlist = (product: Product) => {
         dispatch(wishlist_product(product));
     };
     //  Remove single product form  cart 
-    const UseRemoveDecreaseCart = (product: ProductsType) => {
+    const UseRemoveDecreaseCart = (product: Product) => {
         dispatch(decrease_quantity(product));
     };
 

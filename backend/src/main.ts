@@ -14,8 +14,14 @@ async function bootstrap(): Promise<void> {
   const configService: ConfigService<EnvironmentSettings> = app.get(ConfigService);
   const port = configService.get('port', { infer: true });
   const environmentName = configService.get('environmentName', { infer: true });
+  const appBaseUrl = configService.get('appBaseUrl', { infer: true });
 
   app.useLogger(logger);
+  app.enableCors({
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    credentials: true,
+    origin: appBaseUrl,
+  });
   app.useGlobalPipes(new ValidationPipe({
     exceptionFactory: ValidationHelper.validationExceptionFactory,
     whitelist: true,
