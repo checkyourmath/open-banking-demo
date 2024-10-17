@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useDispatch } from 'react-redux';
@@ -11,7 +11,8 @@ import useCart from '@shared/hooks/useCart';
 import { Loader } from '@shared/components/common/loader';
 
 const CartMainArea = () => {
-    const { UseAddToCart, UseClearCart, UseRemoveDecreaseCart, purchase, stopPurchase } = useCart();
+    const [ isLoading, setIsLoading ] = useState(false);
+    const { UseAddToCart, UseClearCart, UseRemoveDecreaseCart, purchase } = useCart();
     const dispatch = useDispatch();
     const handleRemoveCart = (product: Product) => {
         dispatch(remove_cart_product(product));
@@ -19,19 +20,12 @@ const CartMainArea = () => {
     const cartProducts = useSelector(
         (state: RootState) => state.cart.cartProducts
     );
-    const isPurchasing = useSelector(
-      (state: RootState) => state.cart.isPurchasing
-    );
     const totalPrice = cartProducts.reduce((total, product) => {
         if (typeof product.price === 'number' && product.price !== 0) {
             return total + (product.price ?? 0) * (product.quantity ?? 0);
         }
         return total;
     }, 0);
-
-    useEffect(() => {
-      stopPurchase();
-    });
 
     return (
         <>
@@ -45,7 +39,7 @@ const CartMainArea = () => {
             {cartProducts.length >= 1 && (
                 <section className="cart-area pt-100 pb-100">
                     <div className="container">
-                        {isPurchasing && <div style={{
+                        {isLoading && <div style={{
                             position: 'absolute',
                             top: 0,
                             left: 0,
@@ -153,6 +147,7 @@ const CartMainArea = () => {
                                               href="#"
                                               onClick={(e) => {
                                                   e.preventDefault();
+                                                  setIsLoading(true);
                                                   purchase();
                                               }}
                                             >Purchase</Link>

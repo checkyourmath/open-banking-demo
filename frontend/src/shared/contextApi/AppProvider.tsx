@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useState } from "react";
-import { AppContextType } from "@/interFace/interFace";
+import { AppContextType } from "@shared/interface";
 
 export const AppContext = createContext<AppContextType | undefined>(undefined);
 const AppProvider = ({ children }: { children: React.ReactNode }) => {

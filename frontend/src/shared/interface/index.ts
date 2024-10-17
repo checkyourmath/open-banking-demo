@@ -27,6 +27,28 @@ export type Order = {
   paymentLink: string;
 }
 
+export enum PaymentStatus {
+  Requested = 'Requested',
+  Authorized = 'Authorized',
+  Cancelled = 'Cancelled',
+  Initiated = 'Initiated',
+}
+
+export type QueryParams = Record<string, string | string[]>;
+
+export type Payment = {
+  id: string;
+  amount: number;
+  status: PaymentStatus;
+  createdAt: string;
+  lastUpdated: string;
+  details: {
+    reason: string;
+    description: string;
+    messageToPayer: string;
+  };
+}
+
 // context api data type
 export interface AppContextType {
   scrollDirection?: string;

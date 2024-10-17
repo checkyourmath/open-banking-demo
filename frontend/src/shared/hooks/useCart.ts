@@ -1,7 +1,6 @@
 import { Product } from '@shared/interface';
 import {
     cart_product,
-    cart_stop_purchase,
     clear_cart,
     decrease_quantity, purchaseAction
 } from '@shared/redux/slices/cartSlice';
@@ -18,9 +17,6 @@ const useCart = () => {
       // @ts-expect-error
       dispatch(purchaseAction());
     };
-    const stopPurchase = () => {
-        dispatch(cart_stop_purchase());
-    }
 
     // Add product on cart
     const UseAddToCart = (product: Product) => {
@@ -74,7 +70,6 @@ const useCart = () => {
         UseClearWishlist,
         UseRemoveDecreaseCart,
         purchase,
-        stopPurchase
     }
 };
 

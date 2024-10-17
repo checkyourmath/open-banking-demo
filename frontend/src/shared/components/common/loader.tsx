@@ -1,7 +1,10 @@
 import React from 'react';
 
 export function Loader() {
-  return <svg className="ip" viewBox="0 0 256 128" width="128" height="64" xmlns="http://www.w3.org/2000/svg">
+  return <svg
+    className="ip" viewBox="0 0 256 128" width="128" height="64" xmlns="http://www.w3.org/2000/svg"
+    style={{ opacity: 0.5 }}
+  >
     <defs>
       <linearGradient id="grad1" x1="0" y1="0" x2="1" y2="0">
         <stop offset="0%" stopColor="#5ebd3e"/>

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from 'next/image';
 import { useDispatch } from "react-redux";
@@ -16,26 +16,20 @@ interface HeaderCartProps {
 }
 
 const CartSidebar: React.FC<HeaderCartProps> = ({ setCartOpen, cartOpen }) => {
+    const [ isLoading, setIsLoading ] = useState(false);
     const dispatch = useDispatch();
     const handleRemoveCart = (product: Product) => {
         dispatch(remove_cart_product(product));
     };
-    const { purchase, stopPurchase } = useCart();
+    const { purchase } = useCart();
 
     const cartProducts = useSelector(
         (state: RootState) => state.cart.cartProducts
-    );
-    const isPurchasing = useSelector(
-      (state: RootState) => state.cart.isPurchasing
     );
     const totalPrice = cartProducts.reduce(
         (total, product) => total + (product.price ?? 0) * (product.quantity ?? 0),
         0
     );
-
-    useEffect(() => {
-        stopPurchase();
-    });
 
     return (
         <div className="cartmini__area">
@@ -58,7 +52,7 @@ const CartSidebar: React.FC<HeaderCartProps> = ({ setCartOpen, cartOpen }) => {
                   className="cartmini__widget"
                   style={{padding: '20px'}}
                 >
-                    {isPurchasing && <div style={{
+                    {isLoading && <div style={{
                         position: 'absolute',
                         top: 0,
                         left: 0,
@@ -136,6 +130,7 @@ const CartSidebar: React.FC<HeaderCartProps> = ({ setCartOpen, cartOpen }) => {
                                     href="#"
                                     onClick={(e) => {
                                         e.preventDefault();
+                                        setIsLoading(true);
                                         purchase();
                                     }}
                                   >Purchase</Link>

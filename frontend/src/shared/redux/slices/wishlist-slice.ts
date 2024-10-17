@@ -1,9 +1,9 @@
 "use client"
-import { ProductsType } from "@/interFace/interFace";
+import { Product } from "@shared/interface";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 interface CartState {
-  cartProducts: ProductsType[];
+  cartProducts: Product[];
 }
 
 const initialState: CartState = {
@@ -14,7 +14,7 @@ export const wishlistSlice = createSlice({
   name: "wist",
   initialState,
   reducers: {
-    wishlist_product: (state, { payload }: PayloadAction<ProductsType>) => {
+    wishlist_product: (state, { payload }: PayloadAction<Product>) => {
       const productIndex = state.cartProducts.findIndex(
         (item) => item.id === payload.id
       );
@@ -31,7 +31,7 @@ export const wishlistSlice = createSlice({
         });
       }
     },
-    remove_wishlist_product: (state, { payload }: PayloadAction<ProductsType>) => {
+    remove_wishlist_product: (state, { payload }: PayloadAction<Product>) => {
       state.cartProducts = state.cartProducts.filter(
         (item) => item.id !== payload.id
       );
@@ -49,7 +49,7 @@ export const wishlistSlice = createSlice({
       }
     },
 
-    decrease_quantity: (state, { payload }: PayloadAction<ProductsType>) => {
+    decrease_quantity: (state, { payload }: PayloadAction<Product>) => {
       const cartIndex = state.cartProducts.findIndex(
         (item) => item.id === payload.id
       );
