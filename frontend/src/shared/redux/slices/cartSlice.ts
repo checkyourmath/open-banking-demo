@@ -1,13 +1,17 @@
 "use client"
 
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
-import { Order, Product } from '@shared/interface';
+import { CreateOrderDto, Product } from '@shared/interface';
+import { createOrder } from '@shared/http/orders.http';
+import { redirect } from 'next/navigation';
 interface CartState {
+  isPurchasing: boolean;
   cartProducts: Product[];
 }
 
 const initialState: CartState = {
+  isPurchasing: false,
   cartProducts: [],
 };
 
@@ -16,21 +20,14 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
 
-    cart_purchase: (state) => {
-      const { cartProducts } = state;
-
-      if (!cartProducts.length) {
-        return;
-      }
-
-      const order: Order = [];
-
-      cartProducts.forEach(product => {
-        order.push({
-          productId: product.id,
-          quantity: product.quantity
-        })
-      });
+    cart_start_purchase: (state) => {
+      state.isPurchasing = true;
+    },
+    cart_stop_purchase: (state) => {
+      state.isPurchasing = false;
+    },
+    cart_force_clear: (state) => {
+      state.cartProducts = [];
     },
 
     cart_product: (state, { payload }: PayloadAction<Product>) => {
@@ -84,6 +81,9 @@ export const cartSlice = createSlice({
       }
     },
   },
+  extraReducers: (builder) => {
+
+  }
 });
 
 export const {
@@ -91,7 +91,46 @@ export const {
   remove_cart_product,
   clear_cart,
   decrease_quantity,
-  cart_purchase,
+  cart_start_purchase,
+  cart_stop_purchase,
+  cart_force_clear
 } = cartSlice.actions;
+
+export const purchaseAction = createAsyncThunk(
+  'cart/purchase',
+  async (payload: any, { getState, dispatch }) => {
+    const state = getState() as { cart: CartState };
+    const { cartProducts, isPurchasing } = state.cart;
+
+    if (!cartProducts.length || isPurchasing) {
+      return;
+    }
+
+    dispatch(cart_start_purchase());
+
+    const createOrderDto: CreateOrderDto = {
+      items: cartProducts.map((cartProduct) => ({
+        productId: cartProduct.id,
+        quantity: cartProduct.quantity
+      }))
+    };
+
+    createOrder(createOrderDto)
+      .then((order) => {
+        dispatch(cart_stop_purchase());
+        dispatch(cart_force_clear());
+
+        window.location.replace(order.paymentLink);
+      })
+      .catch(() => {
+        dispatch(cart_stop_purchase());
+
+        toast.error(`Order creation error`, {
+          position: "top-left",
+        });
+      });
+
+  },
+)
 
 export default cartSlice.reducer;

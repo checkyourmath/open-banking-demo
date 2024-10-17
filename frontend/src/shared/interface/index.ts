@@ -8,10 +8,24 @@ export type ApiResponse<T> = {
 };
 
 
+export type CreateOrderDto = {
+  items: {
+    productId: string;
+    quantity: number;
+  }[]
+};
+
+export type AcceptPayment = {
+  authorizationUrl: string;
+  paymentId: string;
+};
+
 export type Order = {
-  productId: string;
-  quantity: number;
-}[];
+  id: string;
+  price: number;
+  paymentId: string;
+  paymentLink: string;
+}
 
 // context api data type
 export interface AppContextType {
