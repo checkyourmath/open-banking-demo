@@ -1,10 +1,9 @@
 import { Injectable, InternalServerErrorException, OnModuleInit } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { ConfigService } from '@nestjs/config';
-import { OpenBankingEUv2Client } from 'open-banking-eu-v2';
+import { EventType, OpenBankingEUv2Client } from 'open-banking-eu-v2';
 import { EnvironmentSettings } from '@shared/types/environment-settings.type';
 import { BankingState } from './entities/banking-state.entity';
-import { EventType } from 'open-banking-eu-v2/dist/_utils/event-emitter.class';
 import { AppLogger } from '@modules/logger/logger.service';
 import { BANKING_STATE_PRIMARY_ID } from '@modules/banking/constants';
 

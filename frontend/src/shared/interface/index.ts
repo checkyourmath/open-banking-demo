@@ -36,7 +36,7 @@ export interface BannerDataType {
 // product type
 export interface Product {
   id: string;
-  image: StaticImageData;
+  image: string;
   title: string;
   category: string;
   description?: string;

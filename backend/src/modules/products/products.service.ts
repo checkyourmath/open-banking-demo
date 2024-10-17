@@ -11,7 +11,13 @@ export class ProductsService {
   ) {}
 
   create(createProductDto: ProductCreateDto): Promise<Product> {
-    return this.productRepository.create(createProductDto);
+    const imageBase64 = createProductDto.file.buffer.toString('base64');
+    const image = `data:${createProductDto.file.mimetype};base64,${imageBase64}`;
+
+    return this.productRepository.create({
+      ...createProductDto,
+      image,
+    });
   }
 
   findAll(): Promise<Product[]> {

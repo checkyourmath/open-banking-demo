@@ -1,7 +1,4 @@
-export enum EventType {
-  NewTokens = 'new-tokens',
-  Error = 'error'
-}
+import { EventType } from '../enums';
 
 export type EventDataMap = {
   [EventType.NewTokens]: { accessToken?: string; refreshToken?: string; };

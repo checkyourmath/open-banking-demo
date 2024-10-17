@@ -15,10 +15,19 @@ const ShopGridTabTwoProducts = ({ products }: { products: Product[] }) => {
                     <div className="row" key={item.id}>
                         <div className="col-xl-4 col-lg-4">
                             <div className="product mb-30">
-                                <div className="product-img">
-                                    <Link href={`/product-details/${item.id}`}>
-                                        <Image src={item.image} style={{ width: "100%", height: "auto" }} alt="image not found" />
-                                    </Link>
+                                <div className="product-img pos-rel" style={{ width: "374px", height: "414px" }}>
+                                    <img
+                                      src={item.image}
+                                      style={{
+                                          width: "100%",
+                                          height: 'auto',
+                                          position: 'absolute',
+                                          top: '50%',
+                                          left: '50%',
+                                          transform: 'translate(-50%, -50%)',
+                                      }}
+                                      alt="image not found"
+                                    />
                                 </div>
                             </div>
                         </div>

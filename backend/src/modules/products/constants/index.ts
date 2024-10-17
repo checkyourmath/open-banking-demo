@@ -1,0 +1,1 @@
+export const MAX_IMAGE_FILE_SIZE = 1000000;

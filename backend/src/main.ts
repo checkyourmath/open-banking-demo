@@ -23,6 +23,10 @@ async function bootstrap(): Promise<void> {
     origin: appBaseUrl,
   });
   app.useGlobalPipes(new ValidationPipe({
+    transform: true,
+    transformOptions: {
+      enableImplicitConversion: true,
+    },
     exceptionFactory: ValidationHelper.validationExceptionFactory,
     whitelist: true,
   }));

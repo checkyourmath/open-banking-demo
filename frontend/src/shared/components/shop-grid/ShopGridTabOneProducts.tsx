@@ -17,8 +17,23 @@ const ShopGridTabOneProducts = ({ products }: { products: Product[] }) => {
                           style={{ cursor: 'pointer' }} onClick={() => setModalData(item)} data-bs-toggle="modal"
                           data-bs-target="#productModalId"
                         >
-                            <div className="product-img pos-rel">
-                                <Image className='primary-img' src={item.image} style={{ width: "100%", height: "auto" }} alt="image not found" />
+                            <div
+                              className="product-img pos-rel"
+                              style={{ width: "374px", height: "414px" }}
+                            >
+                                <img
+                                  className='primary-img'
+                                  src={item.image}
+                                  style={{
+                                    width: "100%",
+                                    height: 'auto',
+                                    position: 'absolute',
+                                    top: '50%',
+                                    left: '50%',
+                                    transform: 'translate(-50%, -50%)',
+                                  }}
+                                  alt="image not found"
+                                />
                                 <div className="product-action">
                                     <button className="action-btn" onClick={() => UseAddToWishlist(item)}><i className="far fa-heart"></i></button>
                                     <button className="action-btn" onClick={() => UseAddToCart(item)}><i className="far fa-cart-plus"></i></button>

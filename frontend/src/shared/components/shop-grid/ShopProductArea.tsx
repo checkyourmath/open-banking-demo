@@ -6,7 +6,6 @@ import NiceSelect from '../common/NiceSelect';
 import productSelectOptionData from '@data/product-select-option-data';
 import ShopGridTabTwoProducts from './ShopGridTabTwoProducts';
 import ShopGridTabOneProducts from './ShopGridTabOneProducts';
-import products_data from '@data/products-data';
 import { Product } from '@shared/interface';
 import { getProducts } from '@shared/http/products.http';
 
