@@ -1,25 +1,26 @@
 import { Column, Table, Model } from 'sequelize-typescript';
-import { DataTypes } from 'sequelize';
+import { CreationOptional, DataTypes, InferAttributes, InferCreationAttributes } from 'sequelize';
 import { v4 as uuidv4 } from 'uuid';
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsString } from 'class-validator';
 
 @Table({
   tableName: 'Order',
 })
-export class Order extends Model<Order> {
+export class Order extends Model<InferAttributes<Order>, InferCreationAttributes<Order>> {
   @Column({
     primaryKey: true,
     type: DataTypes.UUIDV4,
     allowNull: false,
     defaultValue: uuidv4,
   })
-  id: string;
+  @ApiProperty({ type: String, required: true })
+  id: CreationOptional<string>;
 
   @Column({
     type: DataTypes.FLOAT,
     allowNull: false,
   })
+  @ApiProperty({ type: Number, required: true })
   price: number;
 
   @Column({
@@ -27,8 +28,6 @@ export class Order extends Model<Order> {
     allowNull: false,
   })
   @ApiProperty({ type: String, required: true })
-  @IsString()
-  @IsNotEmpty()
   paymentId: string;
 
   @Column({
@@ -36,7 +35,5 @@ export class Order extends Model<Order> {
     allowNull: false,
   })
   @ApiProperty({ type: String, required: true })
-  @IsString()
-  @IsNotEmpty()
   paymentLink: string;
 }

@@ -12,9 +12,9 @@ async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
   const logger = new AppLogger();
   const configService: ConfigService<EnvironmentSettings> = app.get(ConfigService);
-  const port = configService.get('port', { infer: true });
-  const environmentName = configService.get('environmentName', { infer: true });
-  const appBaseUrl = configService.get('appBaseUrl', { infer: true });
+  const port = configService.getOrThrow('port', { infer: true });
+  const environmentName = configService.getOrThrow('environmentName', { infer: true });
+  const appBaseUrl = configService.getOrThrow('appBaseUrl', { infer: true });
 
   app.useLogger(logger);
   app.enableCors({

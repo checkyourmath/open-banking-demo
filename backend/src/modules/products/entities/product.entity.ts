@@ -1,13 +1,13 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Column, Table, Model } from 'sequelize-typescript';
-import { DataTypes } from 'sequelize';
+import { CreationOptional, DataTypes, InferAttributes, InferCreationAttributes } from 'sequelize';
 import { IsNotEmpty, IsNumber, IsOptional, IsString, Length } from 'class-validator';
 import { v4 as uuidv4 } from 'uuid';
 
 @Table({
   tableName: 'Product',
 })
-export class Product extends Model<Product> {
+export class Product extends Model<InferAttributes<Product>, InferCreationAttributes<Product>> {
   @Column({
     primaryKey: true,
     type: DataTypes.UUIDV4,
@@ -15,7 +15,7 @@ export class Product extends Model<Product> {
     defaultValue: uuidv4,
   })
   @ApiProperty({ type: String, required: true })
-  id: string;
+  id: CreationOptional<string>;
 
   @Column({
     type: DataTypes.STRING(255),

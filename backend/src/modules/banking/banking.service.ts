@@ -1,7 +1,7 @@
 import { Injectable, InternalServerErrorException, OnModuleInit } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { ConfigService } from '@nestjs/config';
-import { EventType, OpenBankingEUv2Client } from 'open-banking-eu-v2';
+import { AcceptPayment, CreateAcceptPaymentParams, EventType, OpenBankingEUv2Client } from 'open-banking-eu-v2';
 import { EnvironmentSettings } from '@shared/types/environment-settings.type';
 import { BankingState } from './entities/banking-state.entity';
 import { AppLogger } from '@modules/logger/logger.service';
@@ -25,28 +25,6 @@ export class BankingService implements OnModuleInit {
   async onModuleInit(): Promise<void> {
     await this.initBankingState();
     await this.initOpenBankingClient();
-  }
-
-  private async initOpenBankingClient(): Promise<void> {
-    const { clientId, clientSecret } = this.configService.get('openBanking', { infer: true });
-    const { accessToken, refreshToken } = await this.getBankingState() || {};
-
-    this.bankingClient = new OpenBankingEUv2Client({
-      clientId,
-      clientSecret,
-      accessToken,
-      refreshToken
-    });
-
-    this.bankingClient.on(EventType.Error, (error) => {
-      this.logger.error('Received Banking Client error.', JSON.stringify(error));
-    });
-
-    this.bankingClient.on(EventType.NewTokens, async (newTokens) => {
-      this.logger.log('Received Banking Client "new tokens" event.');
-
-      await this.updateBankingStateTokens(newTokens);
-    });
   }
 
   async connect(authorizationCode: string): Promise<void> {
@@ -75,8 +53,57 @@ export class BankingService implements OnModuleInit {
     }
   }
 
+  async getDestinationId(): Promise<string> {
+    if (!this.bankingClient) {
+      throw new InternalServerErrorException('Banking Client is not initialized.');
+    }
+
+    const accounts = await this.bankingClient.getAccounts();
+    const account = accounts.find(a => !!a.destinationId);
+
+    if (!account) {
+      throw new InternalServerErrorException('Account not found');
+    }
+
+    return account.destinationId;
+  }
+
+  public async createAcceptPayment(params: CreateAcceptPaymentParams): Promise<AcceptPayment> {
+    if (!this.bankingClient) {
+      throw new InternalServerErrorException('Banking Client is not initialized.');
+    }
+
+    return this.bankingClient.createAcceptPayment(params);
+  }
+
+  private async initOpenBankingClient(): Promise<void> {
+    const { clientId, clientSecret } = this.configService.getOrThrow('openBanking', { infer: true });
+    const { accessToken, refreshToken } = await this.getBankingState() || {};
+
+    this.bankingClient = new OpenBankingEUv2Client({
+      clientId,
+      clientSecret,
+      accessToken,
+      refreshToken
+    });
+
+    this.bankingClient.on(EventType.Error, (error) => {
+      this.logger.error('Received Banking Client error.', JSON.stringify(error));
+    });
+
+    this.bankingClient.on(EventType.NewTokens, async (newTokens) => {
+      this.logger.log('Received Banking Client "new tokens" event.');
+
+      await this.updateBankingStateTokens(newTokens);
+    });
+  }
+
   private async updateBankingStateTokens(newTokens: { accessToken?: string; refreshToken?: string }): Promise<void> {
     const bankingState = await this.getBankingState();
+
+    if (!bankingState) {
+      throw new InternalServerErrorException('Banking State is not initialized.');
+    }
 
     await bankingState.update({
       accessToken: newTokens.accessToken,

@@ -20,6 +20,16 @@ export class ProductsService {
     });
   }
 
+  async getProductsMapByIds(productIds: string[]): Promise<Map<string, Product>> {
+    const products = await this.productModel.findAll({
+      where: {
+        id: productIds,
+      }
+    });
+
+    return new Map<string, Product>(products.map(product => [ product.id, product ]));
+  }
+
   findAll(): Promise<Product[]> {
     return this.productModel.findAll();
   }

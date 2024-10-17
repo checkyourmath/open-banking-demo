@@ -1,12 +1,11 @@
 import axios, { AxiosError, AxiosInstance, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { BASE_URL } from './_constants';
 import { RefreshAccessTokenResponse } from './_sortme/refresh-access-token-reposne';
-import { EventCallbackMap, EventEmitter, EventType } from './_utils/event-emitter.class';
+import { EventCallbackMap, EventEmitter } from './_utils/event-emitter.class';
 import { CodeExchangeResponse } from './_dtos/code-exchange.response';
-// import { Account } from '../types/account.type';
-// import { CreatePaymentLinkParams } from '../types/create-payment-link-params.type';
-// import { CreatePaymentLinkResponse } from '../types/create-payment-link-response.type';
-// import { GetPaymentLinkStatusResponse } from '../types/get-payment-link-status-response.type';
+import { AcceptPayment, Account } from './entities';
+import { EventType } from './enums';
+import { CreateAcceptPaymentParams } from './params';
 
 export type ClientOptions = {
   clientId: string;
@@ -90,6 +89,32 @@ export class OpenBankingEUv2Client {
 
   public setTokens(tokens: { accessToken?: string; refreshToken?: string }): void {
     this._setTokens({ ...tokens, skipEmit: true });
+  }
+
+  public async getAccounts(): Promise<Account[]> {
+    const response = await this.mainAxiosInstance.get<{ accounts: Account[] }>(
+      '/v1/accounts',
+    );
+
+    return response.data.accounts;
+  }
+
+  public async createAcceptPayment(params: CreateAcceptPaymentParams): Promise<AcceptPayment> {
+    const response = await this.otherAxiosInstance.post<AcceptPayment>(
+      '/v2/payments/accept',
+      params,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        auth: {
+          username: this.clientId,
+          password: this.clientSecret
+        }
+      }
+    );
+
+    return response.data;
   }
 
   private _setTokens(params: { accessToken?: string; refreshToken?: string; skipEmit?: boolean }): void {
